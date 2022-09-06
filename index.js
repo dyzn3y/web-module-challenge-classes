@@ -140,10 +140,10 @@ class Lambdasian {
 
 class Instructor extends Lambdasian {
   constructor({name, age, location, specialty, favLanguage, catchPhrase}) {
-    super(name, age, location, specialty, favLanguage, catchPhrase);
-    this.name = name;
-    this.age = age;
-    this.location = location;
+    super({name, age, location, specialty, favLanguage, catchPhrase});
+    // this.name = name;
+    // this.age = age;
+    // this.location = location;
     this.specialty = specialty;
     this.favLanguage = favLanguage;
     this.catchPhrase = catchPhrase;
@@ -152,10 +152,11 @@ class Instructor extends Lambdasian {
     return `Today we are learning about ${subject}`;
   }
   grade(student, subject){
-    return `${student} receives a perfect score on ${subject}`;
+    return `${student.name} receives a perfect score on ${subject}`;
   }
 }
-
+const test = new Instructor({name:'john', age: 27, location: 'Baltimore', specialty: 'specialty', favLanguage: 'Javascript', catchPhrase: 'special sauce'});
+console.log(test.grade('joe', 'python'));
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -218,10 +219,9 @@ class ProjectManager extends Instructor{
    debugsCode(student, subject) {
     return `${this.name} debugs ${student.name}'s code on ${subject}`;
    }
-   grade(student, subject){
-    return `${student} receives a perfect score on ${subject}`;
-  }
 }
+const steve = new ProjectManager({name: 'steve', age: 27, location: 'Baltimore', specialty: 'specialty', favLanguage: 'CSS', catchPhrase: 'Oh Yeah', gradClassName: 'name', favInstructor: 'John'});
+console.log(steve.grade('joe', 'python'));
 
 /*
   STRETCH PROBLEM (no tests!)
