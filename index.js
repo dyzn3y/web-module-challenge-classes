@@ -151,28 +151,27 @@ class Instructor extends Lambdasian {
   grade(student, subject){
     return `${student.name} receives a perfect score on ${subject}`;
   }
-  gradeCalculation(student, grade){
-    // let tOF = Math.random()
+  gradeCalculation(student){
     let gradeResult
     let min = 1
     let max = 5
     let addOrSub
     Math.random() === 0 ? addOrSub = 'subtract' : addOrSub = 'add';
     if (addOrSub === 'add') {
-      gradeResult = Math.ceil(grade + (Math.random() * (max * min) + min))
+      gradeResult = Math.ceil(student.grade + (Math.random() * (max * min) + min))
       gradeResult > 100 ? gradeResult = 100 : gradeResult
-      return `${student} has ${gradeResult}%`
+      student.grade = gradeResult
+      return `${student.name} has ${student.grade}%`
     }
     else if (addOrSub === 'subtract') {
       gradeResult = Math.ceil(grade - (Math.random() * (max * min) + min))
-      return `${student} has ${gradeResult}%`
+      student.grade = gradeResult
+      return `${student.name} has ${student.grade}%`
     } else {
       return 'Something went wrong'
     }
   }
 }
-const test = new Instructor({name:'john', age: 27, location: 'Baltimore', specialty: 'specialty', favLanguage: 'Javascript', catchPhrase: 'special sauce'});
-console.log(test.gradeCalculation('joe', 60))
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -236,28 +235,10 @@ class ProjectManager extends Instructor{
    debugsCode(student, subject) {
     return `${this.name} debugs ${student.name}'s code on ${subject}`;
    }
-   gradeCalculation(student, grade){
-    // let tOF = Math.random()
-    let gradeResult
-    let min = 1
-    let max = 5
-    let addOrSub
-    Math.random() === 0 ? addOrSub = 'subtract' : addOrSub = 'add';
-    if (addOrSub === 'add') {
-      gradeResult = Math.ceil(grade + (Math.random() * (max * min) + min))
-      gradeResult > 100 ? gradeResult = 100 : gradeResult
-      return `${student} has ${gradeResult}%`
-    }
-    else if (addOrSub === 'subtract') {
-      gradeResult = Math.ceil(grade - (Math.random() * (max * min) + min))
-      return `${student} has ${gradeResult}%`
-    } else {
-      return 'Something went wrong'
-    }
-  }
 }
 const steve = new ProjectManager({name: 'steve', age: 27, location: 'Baltimore', specialty: 'specialty', favLanguage: 'CSS', catchPhrase: 'Oh Yeah', gradClassName: 'name', favInstructor: 'John'});
-console.log(steve.grade('joe', 'python'));
+const trevor = new Student({name:'Trevor', age:'test-age', location:'test-location', previousBackground:'test-background', className:'test-class', favSubjects: 'test-subject', grade: 70})
+console.log(steve.gradeCalculation(trevor));
 
 /*
   STRETCH PROBLEM (no tests!)
