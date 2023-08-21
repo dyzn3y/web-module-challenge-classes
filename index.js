@@ -141,9 +141,6 @@ class Lambdasian {
 class Instructor extends Lambdasian {
   constructor({name, age, location, specialty, favLanguage, catchPhrase}) {
     super({name, age, location, specialty, favLanguage, catchPhrase});
-    // this.name = name;
-    // this.age = age;
-    // this.location = location;
     this.specialty = specialty;
     this.favLanguage = favLanguage;
     this.catchPhrase = catchPhrase;
@@ -154,9 +151,36 @@ class Instructor extends Lambdasian {
   grade(student, subject){
     return `${student.name} receives a perfect score on ${subject}`;
   }
+  gradeCalculation(student, grade){
+    // let tOF = Math.random()
+    let gradeResult
+    let min = 1
+    let max = 5
+    let addOrSub
+    Math.random() === 0 ? addOrSub = 'subtract' : addOrSub = 'add';
+    if (addOrSub === 'add') {
+      gradeResult = Math.ceil(grade + (Math.random() * (max * min) + min))
+      gradeResult > 100 ? gradeResult = 100 : gradeResult
+      // if (gradeResult > 100) {
+      //   gradeResult = 100
+      //   return `${student} has ${gradeResult}%`
+      // } else {
+      //   return `${student} has ${gradeResult}%`
+      // }
+      return `${student} has ${gradeResult}%`
+
+    }
+    else if (addOrSub === 'subtract') {
+      gradeResult = Math.ceil(grade - (Math.random() * (max * min) + min))
+      return `${student} has ${gradeResult}%`
+    } else {
+      return 'Something went wrong'
+    }
+
+  }
 }
 const test = new Instructor({name:'john', age: 27, location: 'Baltimore', specialty: 'specialty', favLanguage: 'Javascript', catchPhrase: 'special sauce'});
-console.log(test.grade('joe', 'python'));
+console.log(test.gradeCalculation('joe', 60))
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -174,12 +198,13 @@ console.log(test.grade('joe', 'python'));
 */
 
 class Student extends Lambdasian{
-   constructor({name, age, location, previousBackground, className, favSubjects}) {
-    super({name, age, location, previousBackground, className, favSubjects})
+   constructor({name, age, location, previousBackground, className, favSubjects, grade}) {
+    super({name, age, location, previousBackground, className, favSubjects, grade})
     this.name = name;
     this.previousBackground = previousBackground;
     this.className = className;
     this.favSubjects = favSubjects;
+    this.grade = grade;
    }
    listSubjects() {
     return `Loving ${this.favSubjects}`;
